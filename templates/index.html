@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ClassCommand 📘</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <h1>ClassCommand <span style="font-size:18px;">📘</span></h1>
+
+  <form action="/add" method="POST">
+    <input type="text" name="subject" placeholder="Subject (e.g. Math, History)" required>
+    <input type="text" name="task" placeholder="Task (e.g. Pg 88, Essay)" required>
+    <input type="date" name="due" required>
+    <button type="submit">Add Homework</button>
+  </form>
+
+  <ul>
+    {% for t in tasks %}
+      <li>
+        <div class="task">
+          <div>
+            <strong>{{ t[1] }}</strong>: {{ t[2] }} – Due {{ t[3] }}
+          </div>
+          <a href="/delete/{{ t[0] }}" class="delete-btn">🗑️</a>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+</body>
+</html>
